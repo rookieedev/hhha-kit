@@ -1,0 +1,13 @@
+{
+    "name": "rookieedev/hhha-kit",
+    "description": "Recursos laravel hospital",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rookieedev\\HhhaKit\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
