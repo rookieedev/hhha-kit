@@ -2,7 +2,7 @@
 
 namespace Rookieedev\HhhaKit\Http\Responses\Macros;
 
-class Forbidden
+class Forbidden extends Contracts\ResponseMacro
 {
     /**
      * El alias de la macro de respuesta.
