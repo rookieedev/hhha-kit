@@ -5,6 +5,7 @@ namespace Rookieedev\HhhaKit\Http\Responses\Macros\Contracts;
 use Illuminate\Support\Facades\Response;
 use Rookieedev\HhhaKit\Http\Contracts\MacroAPI;
 use Illuminate\Support\MessageBag;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class ResponseMacro
@@ -57,7 +58,7 @@ class ResponseMacro
 
         if ( ! empty( $instance->getAlias() ) ) {
 
-            $json = function (array|MessageBag $data = [], string $message = '') use ($instance) {
+            $json = function (array|MessageBag|Collection $data = [], string $message = '') use ($instance) {
                 $macro = MacroAPI::getMacro();
 
                 if ( $instance->getWrap() != 'data' ) {
@@ -65,7 +66,7 @@ class ResponseMacro
                     unset($macro['data']);
                 }
 
-                if ( is_a($data, MessageBag::class) ) {
+                if ( is_a($data, MessageBag::class) || is_a($data, Collection::class ) ) {
                     $data = $data->toArray();
                 }
 

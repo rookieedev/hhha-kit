@@ -13,6 +13,7 @@ class HhhaKitServiceProvider extends ServiceProvider
         \Rookieedev\HhhaKit\Http\Responses\Macros\NotFound::class,
         \Rookieedev\HhhaKit\Http\Responses\Macros\Critical::class,
         \Rookieedev\HhhaKit\Http\Responses\Macros\Created::class,
+        \Rookieedev\HhhaKit\Http\Responses\Macros\Success::class,
     ];
 
     /**
