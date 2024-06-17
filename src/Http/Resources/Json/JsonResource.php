@@ -21,7 +21,7 @@ class JsonResource extends BaseJsonResource
     {
         return array_unique(
             array_merge(
-                ['hola' => true], //$this->defineMacro(),
+                $this->defineMacro(),
                 $this->with()
             )
         );

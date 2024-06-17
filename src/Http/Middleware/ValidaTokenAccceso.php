@@ -10,14 +10,30 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ValidaTokenAccceso
 {
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        $usuario = (object) [
-            'id' => '10'
-        ];
+        try{
+            $cliente = new \GuzzleHttp\Client();
+            if($request->header('Authorization') == null){
+                return response()->critical(message:'Sin token de acceso');
+            }
+            $response = $cliente->request('POST', 'https://api.hhha.cl/auth/check',
+                [
+                    'verify' => false,
+                    'http_errors' => false,
+                    'headers' => [
+                        'Accept'     => 'application/json',
+                        'Authorization' => $request->header('Authorization')//TOKEN QUE CONOCE EL CLIENTE
+                    ]
+                ]);
 
-        $request->setUserResolver( fn() => $usuario);
+            if ($response->getStatusCode() == 200){
+                return $next($request);
+            }
+            return response()->ununauthorized(message:'Usuario no logueado');
+        }catch (\Exception $e){
+            return response()->critical(message:'No es posible validar el usuario');
+        }
 
-        return $next($request);
     }
 }
