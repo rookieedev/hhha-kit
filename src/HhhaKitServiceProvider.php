@@ -27,7 +27,7 @@ class HhhaKitServiceProvider extends ServiceProvider
         ///////////////////////////
         ///////ERROR SERVER////////
         ///////////////////////////
-        //\Rookieedev\HhhaKit\Http\Responses\Macros\Critical::class,
+        \Rookieedev\HhhaKit\Http\Responses\Macros\Critical::class,
     ];
 
     /**
