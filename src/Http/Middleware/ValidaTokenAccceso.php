@@ -30,7 +30,7 @@ class ValidaTokenAccceso
             if ($response->getStatusCode() == 200){
                 return $next($request);
             }
-            return response()->ununauthorized(message:'Usuario no logueado');
+            return response()->unauthorized(message:'Usuario no logueado');
         }catch (\Exception $e){
             return response()->critical(message:'No es posible validar el usuario');
         }
