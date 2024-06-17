@@ -8,6 +8,16 @@
             "Rookieedev\\HhhaKit\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rookieedev\\HhhaKit\\HhhaKitServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }
