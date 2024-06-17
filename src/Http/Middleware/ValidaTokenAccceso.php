@@ -15,7 +15,7 @@ class ValidaTokenAccceso
         try{
             $cliente = new \GuzzleHttp\Client();
             if($request->header('Authorization') == null){
-                return response()->critical(message:'Sin token de acceso');
+                return response()->Forbidden();
             }
             $response = $cliente->request('POST', 'https://api.hhha.cl/auth/check',
                 [

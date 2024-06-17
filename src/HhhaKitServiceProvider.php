@@ -9,12 +9,25 @@ use Illuminate\Support\ServiceProvider;
 class HhhaKitServiceProvider extends ServiceProvider
 {
     protected $response_macros = [
-        \Rookieedev\HhhaKit\Http\Responses\Macros\Errors::class,
-        \Rookieedev\HhhaKit\Http\Responses\Macros\NotFound::class,
-        \Rookieedev\HhhaKit\Http\Responses\Macros\Critical::class,
+
+        ///////////////////////////
+        ///RESPUESTAS CORRECTAS////
+        ///////////////////////////
         \Rookieedev\HhhaKit\Http\Responses\Macros\Created::class,
         \Rookieedev\HhhaKit\Http\Responses\Macros\Success::class,
+
+        ///////////////////////////
+        ///////ERROR CLIENTE///////
+        ///////////////////////////
+        \Rookieedev\HhhaKit\Http\Responses\Macros\Errors::class,
         \Rookieedev\HhhaKit\Http\Responses\Macros\Unauthorized::class,
+        \Rookieedev\HhhaKit\Http\Responses\Macros\Forbidden::class,
+        \Rookieedev\HhhaKit\Http\Responses\Macros\NotFound::class,
+
+        ///////////////////////////
+        ///////ERROR SERVER////////
+        ///////////////////////////
+        //\Rookieedev\HhhaKit\Http\Responses\Macros\Critical::class,
     ];
 
     /**
