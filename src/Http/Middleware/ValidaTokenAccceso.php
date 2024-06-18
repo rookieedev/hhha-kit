@@ -12,28 +12,25 @@ class ValidaTokenAccceso
 {
     public function handle(Request $request, Closure $next): Response
     {
-        try{
-            $cliente = new \GuzzleHttp\Client();
-            if($request->header('Authorization') == null){
-                return response()->forbidden();
-            }
-            $response = $cliente->request('POST', 'https://api.hhha.cl/auth/check',
-                [
-                    'verify' => false,
+        if ( $request->hasHeader('Authorization') ) {
+
+            $response = Http::withHeaders([
+                'Accept'        => 'application/json',
+                'Authorization' => $request->bearerToken() //TOKEN QUE CONOCE EL CLIENTE
+            ])
+                ->post('https://api.hhha.cl/auth/check')
+                ->withOptions([
+                    'verify'      => false,
                     'http_errors' => false,
-                    'headers' => [
-                        'Accept'     => 'application/json',
-                        'Authorization' => $request->header('Authorization')//TOKEN QUE CONOCE EL CLIENTE
-                    ]
                 ]);
 
-            if ($response->getStatusCode() == 200){
+            if ( $response->ok() ) {
                 return $next($request);
             }
+
             return response()->unauthorized(message:'Usuario no logueado');
-        }catch (\Exception $e){
-            return response()->critical(message:'No es posible validar el usuario');
         }
 
+        return response()->forbidden();
     }
 }
