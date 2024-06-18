@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Http;
 
-
 class ValidaTokenAccceso
 {
     public function handle(Request $request, Closure $next): Response
@@ -20,11 +19,11 @@ class ValidaTokenAccceso
                 'Accept'        => 'application/json',
                 'Authorization' => $request->bearerToken() //TOKEN QUE CONOCE EL CLIENTE
             ])
-                ->post('https://api.hhha.cl/auth/check')
                 ->withOptions([
                     'verify'      => false,
                     'http_errors' => false,
-                ]);
+                ])
+                ->post('https://api.hhha.cl/auth/check');
 
             if ( $response->ok() ) {
                 return $next($request);
@@ -34,5 +33,6 @@ class ValidaTokenAccceso
         }
 
         return response()->forbidden();
+
     }
 }
