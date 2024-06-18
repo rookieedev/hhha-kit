@@ -17,7 +17,7 @@ class ValidaTokenAccceso
 
             $response = Http::withHeaders([
                 'Accept'        => 'application/json',
-                'Authorization' => $request->bearerToken() //TOKEN QUE CONOCE EL CLIENTE
+                'Authorization' => 'Bearer ' .$request->bearerToken() //TOKEN QUE CONOCE EL CLIENTE
             ])
                 ->withOptions([
                     'verify'      => false,
